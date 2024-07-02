@@ -20,20 +20,6 @@ def hello():
         "greeting": greeting
     }
     return jsonify(response)
-
-@app.route('/', methods=['GET'])
-def hello2():
-    visitor_name = request.args.get('visitor_name', 'Guest')
-    ip = request.remote_addr
-    location = get_location(ip)
-    temperature = get_temperature(location)
-    greeting = f"Hello, {visitor_name}!, The intensity is {temperature} degrees Celsius in {location}."
-    response = {
-        "client_ip": ip,
-        "location": location,
-        "greeting": greeting
-    }
-    return jsonify(response)
     
 def get_location(ip):
     response = requests.get(f"http://ip-api.com/json/{ip}")
@@ -47,9 +33,6 @@ def get_temperature(location):
     data = response.json()
     temperature = data.get('main', {}).get('temp')
     return temperature
-
-
-
 
 
 if __name__ == '__main__':
