@@ -13,7 +13,8 @@ def hello():
     ip = request.remote_addr
     location = get_location(ip)
     temperature = get_temperature(location)
-    greeting = f"Hello, {visitor_name}!, The temperature is {temperature} degrees Celsius in {location}."
+    name = visitor_name.strip("'\'").strip('"')
+    greeting = f"Hello, {name}!, The temperature is {temperature} degrees Celsius in {location}."
     response = {
         "client_ip": ip,
         "location": location,
