@@ -42,8 +42,8 @@ def get_location(ip):
     return location
 
 def get_temperature(location):
-    api_key = os.getenv('api_key')
-    response = requests.get(f"http://api.openweathermap.org/data/2.5/weather?q={location}&appid={api_key}&units=metric")
+    apikey = os.getenv('api_key')
+    response = requests.get(f"http://api.openweathermap.org/data/2.5/weather?q={location}&appid={apikey}&units=metric")
     data = response.json()
     temperature = data.get('main', {}).get('temp')
     return temperature
